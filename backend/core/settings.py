@@ -131,9 +131,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Rest Framework permissions
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ]
 }
+
+# Other permissions
+# AllowAny
+# IsAuthenticatedUser
+# IsAdminUser
+# IsAuthenticatedorReadOnly
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
