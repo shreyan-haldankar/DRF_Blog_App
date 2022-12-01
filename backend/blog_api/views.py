@@ -1,7 +1,7 @@
 from rest_framework import generics
 from blog.models import Post
 from .serializers import PostSerializer
-from rest_framework.permissions import SAFE_METHODS, BasePermission, IsAdminUser, DjangoModelPermissions, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import SAFE_METHODS, BasePermission, IsAdminUser, DjangoModelPermissions, IsAuthenticatedOrReadOnly, IsAuthenticated
 # Create your views here.
 
 
@@ -15,7 +15,7 @@ class PostUserWritePermission(BasePermission):
 
 class PostListView(generics.ListCreateAPIView):
     # Getting all the Posts that are published
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
     queryset = Post.postobjects.all()
     serializer_class = PostSerializer
 
