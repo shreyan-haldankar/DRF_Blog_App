@@ -32,5 +32,12 @@ And navigate to `http://127.0.0.1:8000/`.
 ### Access the API endpoint views via a browser
 Go to <a href="http://127.0.0.1:8000/api/">127.0.0.1:8000/api/</a>
 
+<br>
+
+### API documentation
+Go to <a href="http://127.0.0.1:8000/docs/">127.0.0.1:8000/docs/</a>
+
+<br>
+
 ###  Test the API
 Send HTTP requests to this API such as GET, POST, PUT, DELETE for performing CRUD operations on the Blogs.
