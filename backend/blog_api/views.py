@@ -81,11 +81,11 @@ class PostDetail(generics.ListAPIView):
 class PostListDetailFilter(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['^slug']
     # Search filter methods
     # '^' Starts-with search.
     # '=' Exact matches.
     # '@' Full-text search. (Currently only supported Django's PostgreSQL backend.)
     # '$' Regex search.
-    filter_backend = [filters.SearchFilter]
-    search_fields = ['^slug']
+        
