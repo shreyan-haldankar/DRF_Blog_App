@@ -64,20 +64,6 @@ class PostList(generics.ListCreateAPIView):
         return queryset
 
 # class PostDetail(generics.RetrieveAPIView):
-#     # permission_classes = [PostUserWritePermission]
-#     # queryset = Post.objects.all()
-#     serializer_class = PostSerializer
-
-#     # def get_queryset(self):
-#     #     slug = self.kwargs['pk']
-#     #     queryset = Post.objects.filter(id=slug)
-#     #     return queryset
-
-#     # To get query params we have request.query_params.get
-#     def get_queryset(self):
-#         slug = self.request.query_params.get("slug", None)
-#         print(slug)
-#         return Post.objects.filter(slug=slug)
 
 class PostDetail(generics.RetrieveAPIView):
 
@@ -97,4 +83,30 @@ class PostListDetailFilter(generics.ListAPIView):
     # '=' Exact matches.
     # '@' Full-text search. (Currently only supported Django's PostgreSQL backend.)
     # '$' Regex search.
-        
+
+
+# TODO: Add custom permissions
+# Admin view
+
+class CreatePost(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+# View Post
+class AdminPostDetail(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+# Update Post
+class UpdatePost(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+# Delete a Post
+class DeletePost(generics.RetrieveDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
