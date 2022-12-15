@@ -63,20 +63,29 @@ class PostList(generics.ListCreateAPIView):
         queryset = Post.objects.filter(author=user)
         return queryset
 
-class PostDetail(generics.ListAPIView):
-    # permission_classes = [PostUserWritePermission]
-    # queryset = Post.objects.all()
+# class PostDetail(generics.RetrieveAPIView):
+#     # permission_classes = [PostUserWritePermission]
+#     # queryset = Post.objects.all()
+#     serializer_class = PostSerializer
+
+#     # def get_queryset(self):
+#     #     slug = self.kwargs['pk']
+#     #     queryset = Post.objects.filter(id=slug)
+#     #     return queryset
+
+#     # To get query params we have request.query_params.get
+#     def get_queryset(self):
+#         slug = self.request.query_params.get("slug", None)
+#         print(slug)
+#         return Post.objects.filter(slug=slug)
+
+class PostDetail(generics.RetrieveAPIView):
+
     serializer_class = PostSerializer
 
-    # def get_queryset(self):
-    #     slug = self.kwargs['pk']
-    #     queryset = Post.objects.filter(id=slug)
-    #     return queryset
-
-    # To get query params we have request.query_params.get
-    def get_queryset(self):
-        slug = self.request.query_params.get("slug", None)
-        return Post.objects.filter(slug=slug)
+    def get_object(self, queryset=None, **kwargs):
+        item = self.kwargs.get('pk')
+        return get_object_or_404(Post, slug=item)
 
 class PostListDetailFilter(generics.ListAPIView):
     queryset = Post.objects.all()

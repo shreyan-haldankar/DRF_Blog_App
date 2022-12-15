@@ -15,7 +15,6 @@ urlpatterns = [
     path('api/', include('blog_api.urls')),
     path('api/user/', include('users.urls', namespace="users")),
     
-    path('api-auth/',include('rest_framework.urls', namespace = "rest_framework")),
     path('', include('blog.urls')),
     path('docs', include_docs_urls(title="BlogAPI")),
 
@@ -24,6 +23,7 @@ urlpatterns = [
         description="API for the BlogAPI",
         version="1.0.0"
     ),name="openapi-schema"),
+    path('api-auth/',include('rest_framework.urls', namespace = "rest_framework")),
 
 
 
